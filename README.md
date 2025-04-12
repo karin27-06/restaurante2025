@@ -76,7 +76,8 @@ We welcome contributions! Please follow the standard GitHub workflow for submitt
 
 ### Contributors
 
-- [Junior](https://github.com/junior) - Project Maintainer
+- [Karin](https://github.com/karin27-06) - Project Maintainer
+- [Pablo](https://github.com/PabloLupuX) - Project Maintainer
 
 ## License
 
