@@ -24,7 +24,7 @@
                             <FormItem>
                                 <FormLabel>Nombre</FormLabel>
                                 <FormControl>
-                                    <Input type="text" placeholder="nombre y apellidos" v-bind="componentField" />
+                                    <Input type="text" placeholder="Nombres y Apellidos" v-bind="componentField" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -67,8 +67,8 @@
                                         <SelectContent>
                                             <SelectGroup>
                                                 <SelectLabel>Estado</SelectLabel>
-                                                <SelectItem value="activo"> activo </SelectItem>
-                                                <SelectItem value="inactivo"> inactivo </SelectItem>
+                                                <SelectItem value="activo"> Activo </SelectItem>
+                                                <SelectItem value="inactivo"> Inactivo </SelectItem>
                                             </SelectGroup>
                                         </SelectContent>
                                     </Select>
