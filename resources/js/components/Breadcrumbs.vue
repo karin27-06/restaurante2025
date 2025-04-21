@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Link } from '@inertiajs/vue3';
 
 interface BreadcrumbItem {
     title: string;
     href?: string;
+    download?: boolean;
 }
 
 defineProps<{
@@ -21,9 +22,12 @@ defineProps<{
                         <BreadcrumbPage>{{ item.title }}</BreadcrumbPage>
                     </template>
                     <template v-else>
-                        <BreadcrumbLink as-child>
+                        <template v-if="item.download">
+                            <a :href="item.href" target="_blank" download>{{ item.title }}</a>
+                        </template>
+                        <template v-else>
                             <Link :href="item.href ?? '#'">{{ item.title }}</Link>
-                        </BreadcrumbLink>
+                        </template>
                     </template>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator v-if="index !== breadcrumbs.length - 1" />
