@@ -5,7 +5,7 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { BookOpen, Car, Folder, LayoutGrid, List, Map, Settings2, Shield, Truck, UserSquare } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -13,6 +13,113 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: '/dashboard',
         icon: LayoutGrid,
+    },
+    {
+        title: 'Proveedores',
+        href: '/panel/suppliers',
+        icon: Truck,
+    },
+    {
+        title: 'Categorías',
+        href: '/panel/categories',
+        icon: List,
+    },
+    {
+        title: 'Clientes',
+        href: '/panel/customers',
+        icon: Car,
+    },
+    {
+        title: 'Usuarios',
+        href: '/panel/users',
+        icon: UserSquare,
+    },
+];
+
+const mainNavItems2: NavItem[] = [
+    {
+        title: 'Seguridad',
+        href: '#',
+        icon: Shield,
+        items: [
+            {
+                title: 'Usuarios',
+                href: '/panel/users',
+            },
+            {
+                title: 'Roles',
+                href: '#',
+            },
+            {
+                title: 'Permisos',
+                href: '#',
+            },
+        ],
+    },
+    {
+        title: 'Models',
+        href: '#',
+        icon: Map,
+        items: [
+            {
+                title: 'Genesis',
+                href: '#',
+            },
+            {
+                title: 'Explorer',
+                href: '#',
+            },
+            {
+                title: 'Quantum',
+                href: '#',
+            },
+        ],
+    },
+    {
+        title: 'Documentation',
+        href: '#',
+        icon: BookOpen,
+        items: [
+            {
+                title: 'Introduction',
+                href: '#',
+            },
+            {
+                title: 'Get Started',
+                href: '#',
+            },
+            {
+                title: 'Tutorials',
+                href: '#',
+            },
+            {
+                title: 'Changelog',
+                href: '#',
+            },
+        ],
+    },
+    {
+        title: 'Configuraciones',
+        href: '#',
+        icon: Settings2,
+        items: [
+            {
+                title: 'General',
+                href: '/settings/profile',
+            },
+            {
+                title: 'Team',
+                href: '#',
+            },
+            {
+                title: 'Billing',
+                href: '#',
+            },
+            {
+                title: 'Limits',
+                href: '#',
+            },
+        ],
     },
 ];
 
@@ -45,7 +152,7 @@ const footerNavItems: NavItem[] = [
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" />
+            <NavMain :items="mainNavItems" :items2="mainNavItems2" />
         </SidebarContent>
 
         <SidebarFooter>
