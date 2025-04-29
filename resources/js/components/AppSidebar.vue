@@ -5,7 +5,7 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Car, Folder, LayoutGrid, List, Map, Settings2, Shield, Truck, UserSquare } from 'lucide-vue-next';
+import { BookOpen, Folder, LayoutGrid, Map, Settings2, Shield, UserSquare, Warehouse } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -15,19 +15,9 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Proveedores',
-        href: '/panel/suppliers',
-        icon: Truck,
-    },
-    {
-        title: 'Categorías',
-        href: '/panel/categories',
-        icon: List,
-    },
-    {
-        title: 'Clientes',
-        href: '/panel/customers',
-        icon: Car,
+        title: 'Almacenes',
+        href: '/panel/almacens',
+        icon: Warehouse,
     },
     {
         title: 'Usuarios',

@@ -2,6 +2,7 @@
 <?php
 
 use App\Http\Controllers\Panel\UserController;
+use App\Http\Controllers\AlmacenController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,6 +23,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('users', UserController::class);
         # list users
         Route::get('listar-users',[UserController::class,'listarUsers'])->name('users.listar');
+        # module almacens
+        Route::resource('almacens', AlmacenController::class);
+        # list almacens
+        Route::get('listar-almacens', [AlmacenController::class, 'listarAlmacens'])->name('almacens.listar');
+    
     });
 });
 
