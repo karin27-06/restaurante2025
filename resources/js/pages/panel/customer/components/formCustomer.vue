@@ -100,10 +100,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/panel/customers',
     },
     {
-        title: 'Exportar',
-        href: '/panel/users/export',
-    },
-    {
         title: 'crear usuario',
         href: '/panel/customers/create',
     },
