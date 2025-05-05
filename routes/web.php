@@ -2,6 +2,8 @@
 <?php
 
 use App\Http\Controllers\Panel\UserController;
+use App\Http\Controllers\Panel\CategoryController;
+use App\Http\Controllers\Inputs\SelectController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,6 +24,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('users', UserController::class);
         # list users
         Route::get('listar-users',[UserController::class,'listarUsers'])->name('users.listar');
+
+         
+        # module categories
+        Route::resource('categories', CategoryController::class);
+        # list categories
+        Route::get('listar-categories',[CategoryController::class,'listarCategories'])->name('categories.listar');
+     
+
+
+
+          # Route group for inputs, selects and autocomplete
+          Route::prefix('inputs')->name('inputs.')->group(function(){
+            # get categories list
+            Route::get('category_list',[SelectController::class,'getCategoryList'])->name('category_list');
+            
+        });
     });
 });
 
