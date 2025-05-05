@@ -23,3 +23,8 @@ withDefaults(defineProps<Props>(), {
         </AppContent>
     </AppShell>
 </template>
+<style>
+.relative.h-svh.w-\[--sidebar-width\].bg-transparent.transition-\[width\].duration-200.ease-linear.group-data-\[collapsible\=offcanvas\]\:w-0.group-data-\[side\=right\]\:rotate-180.group-data-\[collapsible\=icon\]\:w-\[calc\(var\(--sidebar-width-icon\)_\+_theme\(spacing\.4\)\)\] {
+    display: none;
+}
+</style>
