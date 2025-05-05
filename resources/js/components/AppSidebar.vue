@@ -14,18 +14,31 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+];
+const mainNavItems3: NavItem[] = [
     {
         title: 'Almacenes',
         href: '/panel/almacens',
         icon: Warehouse,
     },
+];
+const mainNavItems4: NavItem[] = [
     {
-        title: 'Usuarios',
-        href: '/panel/users',
+        title: 'Clientes',
+        href: '#',
         icon: UserSquare,
+        items: [
+            {
+                title: 'Clientes',
+                href: '/panel/customers',
+            },
+            {
+                title: 'Tipos de cliente',
+                href: '/panel/clientTypes',
+            },
+        ],
     },
 ];
-
 const mainNavItems2: NavItem[] = [
     {
         title: 'Seguridad',
@@ -142,7 +155,7 @@ const footerNavItems: NavItem[] = [
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" :items2="mainNavItems2" />
+            <NavMain :items="mainNavItems" :items2="mainNavItems2" :items3="mainNavItems3" :items4="mainNavItems4" />
         </SidebarContent>
 
         <SidebarFooter>

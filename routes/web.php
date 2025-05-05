@@ -3,6 +3,10 @@
 
 use App\Http\Controllers\Panel\UserController;
 use App\Http\Controllers\AlmacenController;
+use App\Http\Controllers\ClientTypeController;
+use App\Http\Controllers\Inputs\AutoCompleteController;
+use App\Http\Controllers\Inputs\SelectController;
+use App\Http\Controllers\Panel\CustomerController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -27,7 +31,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('almacens', AlmacenController::class);
         # list almacens
         Route::get('listar-almacens', [AlmacenController::class, 'listarAlmacens'])->name('almacens.listar');
+        # module Client Types
+        Route::resource('clientTypes', ClientTypeController::class);
+        # list Client Types
+        Route::get('listar-clientTypes', [ClientTypeController::class, 'listarClientTypes'])->name('clientTypes.listar');
+        # module Customers
+        Route::resource('customers', CustomerController::class);
+        # list Customers
+        Route::get('listar-customers', [CustomerController::class, 'listarCustomers'])->name('customers.listar');
     
+        # Route group for inputs, selects and autocomplete
+        Route::prefix('inputs')->name('inputs.')->group(function () {
+            # get client_type list
+            route::get('client_type_list', [SelectController::class, 'getClientTypeList'])->name('client_type_list');
+            //automplete customers
+            Route::get('customers_list', [AutoCompleteController::class, 'getCustomerList'])->name('customers_list');
+        });
     });
 });
 
