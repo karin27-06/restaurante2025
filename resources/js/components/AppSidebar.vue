@@ -5,7 +5,7 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Car, Folder, LayoutGrid, List, Map, Settings2, Shield, Truck, UserSquare } from 'lucide-vue-next';
+import { BookOpen, Folder, LayoutGrid, Map, Settings2, Shield, UserSquare, Warehouse } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -14,28 +14,31 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+];
+const mainNavItems3: NavItem[] = [
     {
-        title: 'Proveedores',
-        href: '/panel/suppliers',
-        icon: Truck,
-    },
-    {
-        title: 'Categorías',
-        href: '/panel/categories',
-        icon: List,
-    },
-    {
-        title: 'Clientes',
-        href: '/panel/customers',
-        icon: Car,
-    },
-    {
-        title: 'Usuarios',
-        href: '/panel/users',
-        icon: UserSquare,
+        title: 'Almacenes',
+        href: '/panel/almacens',
+        icon: Warehouse,
     },
 ];
-
+const mainNavItems4: NavItem[] = [
+    {
+        title: 'Clientes',
+        href: '#',
+        icon: UserSquare,
+        items: [
+            {
+                title: 'Clientes',
+                href: '/panel/customers',
+            },
+            {
+                title: 'Tipos de cliente',
+                href: '/panel/clientTypes',
+            },
+        ],
+    },
+];
 const mainNavItems2: NavItem[] = [
     {
         title: 'Seguridad',
@@ -152,7 +155,7 @@ const footerNavItems: NavItem[] = [
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" :items2="mainNavItems2" />
+            <NavMain :items="mainNavItems" :items2="mainNavItems2" :items3="mainNavItems3" :items4="mainNavItems4" />
         </SidebarContent>
 
         <SidebarFooter>

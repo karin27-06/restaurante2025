@@ -18,14 +18,9 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
-            //SupplierSeeder::class,
-            //ClientTypeSeeder::class,
-            //ServiceSeeder::class,
-            //DiscountSeeder::class,
+            AlmacenSeeder::class,
+            ClientTypeSeeder::class,
             //CustomerSeeder::class,
-            CategorySeeder::class,
-            //PeriodSeeder::class,
-            //categorySupplierSeeder::class,
         ]);
     }
 }
