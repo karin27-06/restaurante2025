@@ -5,7 +5,7 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, Map, Settings2, Shield, UserSquare, Warehouse } from 'lucide-vue-next';
+import { BookOpen, Folder, Layers, LayoutGrid, Map, Settings2, Shield, UserSquare, Warehouse } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -35,6 +35,19 @@ const mainNavItems4: NavItem[] = [
             {
                 title: 'Tipos de cliente',
                 href: '/panel/clientTypes',
+            },
+        ],
+    },
+];
+const mainNavItems5: NavItem[] = [
+    {
+        title: 'Gestion de inventario',
+        href: '#',
+        icon: Layers,
+        items: [
+            {
+                title: 'Categorias',
+                href: '/panel/categories',
             },
         ],
     },
@@ -155,7 +168,7 @@ const footerNavItems: NavItem[] = [
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" :items2="mainNavItems2" :items3="mainNavItems3" :items4="mainNavItems4" />
+            <NavMain :items="mainNavItems" :items2="mainNavItems2" :items3="mainNavItems3" :items4="mainNavItems4" :items5="mainNavItems5" />
         </SidebarContent>
 
         <SidebarFooter>

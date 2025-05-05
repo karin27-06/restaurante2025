@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
@@ -23,7 +24,8 @@ class UserSeeder extends Seeder
         // get the permissions 
         $permissions = Permission::all()->pluck('name')->toArray();
 
-         $admin_1 = User::create([
+        // create the admin user
+        $admin_1 = User::create([
             'name' => 'Pablo Isaac Lupu Garcia',
             'email' => 'pablolupu2020@gmail.com',
             'username' => 'pablolupu',
@@ -39,7 +41,6 @@ class UserSeeder extends Seeder
             'status' => 1,
         ]);
 
-  
         $adminRole->syncPermissions($permissions);
         $admin_1->assignRole($adminRole);
         $admin_2->assignRole($adminRole);

@@ -2,6 +2,7 @@
 <?php
 
 use App\Http\Controllers\Panel\UserController;
+use App\Http\Controllers\Panel\CategoryController;
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\ClientTypeController;
 use App\Http\Controllers\Inputs\AutoCompleteController;
@@ -39,13 +40,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('customers', CustomerController::class);
         # list Customers
         Route::get('listar-customers', [CustomerController::class, 'listarCustomers'])->name('customers.listar');
-    
+        # module categories
+        Route::resource('categories', CategoryController::class);
+        # list categories
+        Route::get('listar-categories',[CategoryController::class,'listarCategories'])->name('categories.listar');
+
         # Route group for inputs, selects and autocomplete
         Route::prefix('inputs')->name('inputs.')->group(function () {
             # get client_type list
             route::get('client_type_list', [SelectController::class, 'getClientTypeList'])->name('client_type_list');
             //automplete customers
             Route::get('customers_list', [AutoCompleteController::class, 'getCustomerList'])->name('customers_list');
+            # get categories list
+            Route::get('category_list',[SelectController::class,'getCategoryList'])->name('category_list');
         });
     });
 });
