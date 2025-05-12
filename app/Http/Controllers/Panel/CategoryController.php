@@ -124,5 +124,21 @@ class CategoryController extends Controller
         ]);
     }
 
-    
+         // Método para obtener solo el ID y el nombre de los almacenes
+    public function getCategoriesOption()
+    {
+        try {
+            // Obtener todos los almacenes con solo los campos id y name
+            $categories = Category::select('id', 'name')->get();
+
+            return response()->json([
+                'categories' => $categories
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Error al obtener los almacenes',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
 }

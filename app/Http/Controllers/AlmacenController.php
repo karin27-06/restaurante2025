@@ -103,4 +103,21 @@ class AlmacenController extends Controller
             'message' => 'Almacen eliminado de manera correcta',
         ]);
     }
+     // Método para obtener solo el ID y el nombre de los almacenes
+    public function getAlmacensOption()
+    {
+        try {
+            // Obtener todos los almacenes con solo los campos id y name
+            $almacens = Almacen::select('id', 'name')->get();
+
+            return response()->json([
+                'almacens' => $almacens
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Error al obtener los almacenes',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
 }
