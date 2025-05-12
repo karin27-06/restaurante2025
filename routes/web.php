@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientTypeController;
 use App\Http\Controllers\Inputs\AutoCompleteController;
 use App\Http\Controllers\Inputs\SelectController;
 use App\Http\Controllers\Panel\CustomerController;
+use App\Http\Controllers\Panel\ProductController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -32,6 +33,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('almacens', AlmacenController::class);
         # list almacens
         Route::get('listar-almacens', [AlmacenController::class, 'listarAlmacens'])->name('almacens.listar');
+        Route::get('almacens-option', [AlmacenController::class, 'getAlmacensOption']);
+
         # module Client Types
         Route::resource('clientTypes', ClientTypeController::class);
         # list Client Types
@@ -44,6 +47,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('categories', CategoryController::class);
         # list categories
         Route::get('listar-categories',[CategoryController::class,'listarCategories'])->name('categories.listar');
+        Route::get('categories-option', [CategoryController::class, 'getCategoriesOption']);
+
+
+        # module products
+        Route::resource('products', ProductController::class);
+        # list products
+        Route::get('listar-products',[ProductController::class,'listarProductos'])->name('products.listar');
 
         # Route group for inputs, selects and autocomplete
         Route::prefix('inputs')->name('inputs.')->group(function () {
@@ -53,6 +63,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('customers_list', [AutoCompleteController::class, 'getCustomerList'])->name('customers_list');
             # get categories list
             Route::get('category_list',[SelectController::class,'getCategoryList'])->name('category_list');
+             # get products list
+            Route::get('product_list',[SelectController::class,'getProductList'])->name('product_list');
         });
     });
 });

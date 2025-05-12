@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Inputs;
 use App\Http\Controllers\Controller;
 use App\Models\ClientType;
 use App\Models\Category;
- use App\Models\Laboratory;
+ use App\Models\Product;
  use App\Models\Supplier;
  use App\Models\TypeMovement;
  use App\Models\User;
@@ -29,5 +29,16 @@ class SelectController extends Controller
             ->orderBy('id')
             ->get();
         return response()->json($category);
+    }
+
+    // Obtener lista de productos
+    public function getProductList()
+    {
+        $products = Product::select('id', 'name', 'category_id', 'state')
+            ->with('category') // Para incluir la categoría asociada al producto
+            ->orderBy('id')
+            ->get();
+        
+        return response()->json($products);
     }
 }
