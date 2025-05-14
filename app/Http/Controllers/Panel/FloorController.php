@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
-use App\Http\Resources\CategoryResource;
-use App\Models\Category;
+use App\Http\Requests\StoreFloorRequest;
+use App\Http\Requests\UpdateFloorRequest;
+use App\Http\Resources\FloorResource;
+use App\Models\Floor;
 use App\Pipelines\FilterByName;
 use App\Pipelines\FilterById;
 use Illuminate\Http\Request;
@@ -15,47 +15,47 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 
-class CategoryController extends Controller
+class FloorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        Gate::authorize('viewAny', Category::class);
-        return Inertia::render('panel/category/indexCategory');
+        Gate::authorize('viewAny', Floor::class);
+        return Inertia::render('panel/floor/indexFloor');
     }
 
-    public function listarCategories(Request $request)
+    public function listarFloors(Request $request)
     {
         // authorization so you can access the method
 
-        Gate::authorize('viewAny', Category::class);
+        Gate::authorize('viewAny', Floor::class);
 
         try {
             $name = $request->get('name');
             $id = $request->get('id');
-            $categories = app(Pipeline::class)
-                ->send(Category::query())
+            $floors = app(Pipeline::class)
+                ->send(Floor::query())
                 ->through([
                     new FilterByName($name),
                     new FilterById($id),
                 ])
                 ->thenReturn()->orderBy('id','asc')->paginate(12);
             return response()->json([
-                'categories'=> CategoryResource::collection($categories),
+                'floors'=> FloorResource::collection($floors),
                 'pagination' => [
-                    'total' => $categories->total(),
-                    'current_page' => $categories->currentPage(),
-                    'per_page' => $categories->perPage(),
-                    'last_page' => $categories->lastPage(),
-                    'from' => $categories->firstItem(),
-                    'to' => $categories->lastItem(),
+                    'total' => $floors->total(),
+                    'current_page' => $floors->currentPage(),
+                    'per_page' => $floors->perPage(),
+                    'last_page' => $floors->lastPage(),
+                    'from' => $floors->firstItem(),
+                    'to' => $floors->lastItem(),
                 ],
             ]);
         } catch (\Throwable $th) {
             return response()->json([
-                'message' => 'Error al listar las categorías',
+                'message' => 'Error al listar los pisos',
                 'error' => $th->getMessage(),
             ], 500);
         }
@@ -66,76 +66,77 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return Inertia::render('panel/category/components/formCategory');
+        return Inertia::render('panel/floor/components/formFloor');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreFloorRequest $request)
     {
-        Gate::authorize('create', Category::class);
+        Gate::authorize('create', Floor::class);
         $validated = $request->validated();
         $validated = $request->safe()->except(['state']);
-        $category = Category::create(Arr::except($validated, ['state']));
+        $floor = Floor::create(Arr::except($validated, ['state']));
         // // $validated['state'] = $validated['state'] === 'activo' ? true : false;
-        return redirect()->route('panel.categories.index')->with('message', 'Categoría creada correctamente');   
+        return redirect()->route('panel.floors.index')->with('message', 'Piso creado correctamente');   
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Floor $floor)
     {
-        Gate::authorize('view', $category);
+        Gate::authorize('view', $floor);
         return response()->json([
             'state' => true,
             'message' => 'Categoría encontrada',
-            'category' => new CategoryResource($category),
+            'floor' => new FloorResource($floor),
         ], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateFloorRequest $request, Floor $floor)
     {
-        Gate::authorize('update', $category);
+        Gate::authorize('update', $floor);
         $validated = $request->validated();
         $validated['state'] = ($validated['state'] ?? 'inactivo') === 'activo';
-        $category->update($validated);
+        $floor->update($validated);
         return response()->json([
             'state' => true,
-            'message' => 'Categoría actualizada correctamente',
-            'category' => new CategoryResource($category->refresh()),
+            'message' => 'Piso actualizado correctamente',
+            'floor' => new FloorResource($floor->refresh()),
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Floor $floor)
     {
-        Gate::authorize('delete', $category);
-        $category->delete();
+        Gate::authorize('delete', $floor);
+        $floor->delete();
         return response()->json([
             'state' => true,
-            'message' => 'Categoría eliminada correctamente',
+            'message' => 'Piso eliminada correctamente',
         ]);
     }
 
-         // Método para obtener solo el ID y el nombre de las categorias
+         // Método para obtener solo el ID y el nombre de los pisos
     public function getCategoriesOption()
     {
         try {
-            $categories = Category::select('id', 'name')->get();
+            // Obtener todos los pisos con solo los campos id y name
+            $floors = Floor::select('id', 'name')->get();
 
             return response()->json([
-                'categories' => $categories
+                'floors' => $floors
             ]);
         } catch (\Throwable $th) {
             return response()->json([
-                'message' => 'Error al obtener las categorias',
+                'message' => 'Error al obtener los pisos',
                 'error' => $th->getMessage()
             ], 500);
         }
