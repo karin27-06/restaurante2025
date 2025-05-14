@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientTypeController;
 use App\Http\Controllers\Inputs\AutoCompleteController;
 use App\Http\Controllers\Inputs\SelectController;
 use App\Http\Controllers\Panel\CustomerController;
+use App\Http\Controllers\Panel\FloorController;
 use App\Http\Controllers\Panel\ProductController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -48,8 +49,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         # list categories
         Route::get('listar-categories',[CategoryController::class,'listarCategories'])->name('categories.listar');
         Route::get('categories-option', [CategoryController::class, 'getCategoriesOption']);
-
-
+        # module floors
+        Route::resource('floors', FloorController::class);
+        # list floors
+        Route::get('listar-floors',[FloorController::class,'listarFloors'])->name('floors.listar');
         # module products
         Route::resource('products', ProductController::class);
         # list products
@@ -63,6 +66,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('customers_list', [AutoCompleteController::class, 'getCustomerList'])->name('customers_list');
             # get categories list
             Route::get('category_list',[SelectController::class,'getCategoryList'])->name('category_list');
+            # get floors list
+            Route::get('floor_list',[SelectController::class,'getFloorList'])->name('Floor_list');
              # get products list
             Route::get('product_list',[SelectController::class,'getProductList'])->name('product_list');
         });

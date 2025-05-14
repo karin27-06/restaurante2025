@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ClientType;
 use App\Models\Category;
  use App\Models\Product;
- use App\Models\Supplier;
+ use App\Models\Floor;
  use App\Models\TypeMovement;
  use App\Models\User;
  use Illuminate\Http\Request;
@@ -40,5 +40,13 @@ class SelectController extends Controller
             ->get();
         
         return response()->json($products);
+    }
+
+    // Obtener lista de pisos
+    public function getFloorList(){
+        $floor = Floor::select('id', 'name')
+            ->orderBy('id')
+            ->get();
+        return response()->json($floor);
     }
 }

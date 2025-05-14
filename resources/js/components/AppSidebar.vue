@@ -53,6 +53,10 @@ const mainNavItems5: NavItem[] = [
                 title: 'Productos',
                 href: '/panel/products',
             },
+            {
+                title: 'Pisos',
+                href: '/panel/floors',
+            },
         ],
     },
 ];
